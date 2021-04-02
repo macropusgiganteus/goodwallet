@@ -1,0 +1,12 @@
+flask
+gunicorn
+pythainlp
+gensim
+# numpy
+sklearn
+# matplotlib
+statistics
+# dill
+pandas
+# torch==0.1.2.post2
+sklearn
