@@ -7,7 +7,7 @@ class Header extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     return Padding(
-      padding: EdgeInsets.fromLTRB(12.w, 17.h, 22.5.w, 8.h),
+      padding: EdgeInsets.fromLTRB(12.w, 35.h, 22.5.w, 8.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -145,300 +145,298 @@ class _WalletState extends State<Wallet> with TickerProviderStateMixin {
             colors: [Color(0xffAE90F4), Color(0xffDF8D9F)],
           ),
         ),
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(26.w, 17.h, 22.5.w, 60.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _controller.reverse();
-                              openNav = 1.0;
-                            });
-                          },
-                          child: Icon(Icons.account_circle_rounded,
-                              color: Colors.white, size: 35.w),
-                        ),
-                        Text(
-                          "WALLET",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25.sp,
-                              letterSpacing: 0.66),
-                        ),
-                        SizedBox(
-                          width: 30.w,
-                        ),
-                      ],
-                    ),
+
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(26.w, 35.h, 22.5.w, 60.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _controller.reverse();
+                            openNav = 1.0;
+                          });
+                        },
+                        child: Icon(Icons.account_circle_rounded,
+                            color: Colors.white, size: 35.w),
+                      ),
+                      Text(
+                        "WALLET",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.sp,
+                            letterSpacing: 0.66),
+                      ),
+                      SizedBox(
+                        width: 30.w,
+                      ),
+                    ],
                   ),
-                  TotalCard(),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 30.h),
-                      child: WalletList(this),
-                      width: 0.83.sw,
-                    ),
+                ),
+                TotalCard(),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 30.h),
+                    child: WalletList(this),
+                    width: 0.83.sw,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return AddWallet();
-                      }));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 0.078.sh,
-                      decoration: BoxDecoration(
-                          color: Color(0xffE5A9B6),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(23.r),
-                              topRight: Radius.circular(23.r))),
-                      child: Center(
-                        child: Text(
-                          "Add new wallet",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                          ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return AddWallet();
+                    }));
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 0.078.sh,
+                    decoration: BoxDecoration(
+                        color: Color(0xffE5A9B6),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(23.r),
+                            topRight: Radius.circular(23.r))),
+                    child: Center(
+                      child: Text(
+                        "Add new wallet",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.sp,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-              Positioned(
-                child: SlideTransition(
-                  position:
-                      Tween<Offset>(begin: Offset(0, 0), end: Offset(-1.5, 0))
-                          .animate(CurvedAnimation(
-                    parent: _controller,
-                    curve: Curves.easeIn,
-                  )),
-                  child: IgnorePointer(
-                    ignoring: openNav == 0 ? true : false,
-                    child: AnimatedOpacity(
-                      opacity: openNav,
-                      duration: Duration(milliseconds: 400),
-                      child: GestureDetector(
-                        onTap: () {
+                ),
+              ],
+            ),
+            Positioned(
+              child: SlideTransition(
+                position:
+                    Tween<Offset>(begin: Offset(0, 0), end: Offset(-1.5, 0))
+                        .animate(CurvedAnimation(
+                  parent: _controller,
+                  curve: Curves.easeIn,
+                )),
+                child: IgnorePointer(
+                  ignoring: openNav == 0 ? true : false,
+                  child: AnimatedOpacity(
+                    opacity: openNav,
+                    duration: Duration(milliseconds: 400),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _controller.forward();
+                          openNav = 0.0;
+                        });
+                      },
+                      onPanUpdate: (details) {
+                        if (details.delta.dx < 0) {
                           setState(() {
                             _controller.forward();
                             openNav = 0.0;
                           });
-                        },
-                        onPanUpdate: (details) {
-                          if (details.delta.dx < 0) {
-                            setState(() {
-                              _controller.forward();
-                              openNav = 0.0;
-                            });
-                          }
-                        },
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(
-                              0.05.sw, 0.05.sh, 0.02.sw, 0.05.sh),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(30.r)),
-                            color: Colors.white,
-                          ),
-                          height: screenHeight,
-                          width: 0.6.sw,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FutureBuilder(
-                                    future: userHandler(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot snapshot) {
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          pic != null
-                                              ? CircleAvatar(
-                                                  backgroundImage:
-                                                      NetworkImage(pic),
-                                                )
-                                              : SvgPicture.asset(
-                                                  'images/account.svg',
-                                                  width: 35.w,
-                                                  color: Color(0xffC88EC5),
-                                                ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 8.h),
-                                            child: Text(
-                                              name == null ? 'Guest' : name,
-                                              style: TextStyle(
-                                                  color: Color(0xff706D6D),
-                                                  fontSize: 20.sp,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Text(
-                                            email == null
-                                                ? 'guest@mail.com'
-                                                : email,
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(
+                            0.05.sw, 0.05.sh, 0.02.sw, 0.05.sh),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(30.r)),
+                          color: Colors.white,
+                        ),
+                        height: screenHeight,
+                        width: 0.6.sw,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FutureBuilder(
+                                  future: userHandler(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot snapshot) {
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        pic != null
+                                            ? CircleAvatar(
+                                                backgroundImage:
+                                                    NetworkImage(pic),
+                                              )
+                                            : SvgPicture.asset(
+                                                'images/account.svg',
+                                                width: 35.w,
+                                                color: Color(0xffC88EC5),
+                                              ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 8.h),
+                                          child: Text(
+                                            name == null ? 'Guest' : name,
                                             style: TextStyle(
-                                                color: Color(0xffA1A1A1),
-                                                fontSize: 11.sp,
-                                                fontWeight: FontWeight.w100),
+                                                color: Color(0xff706D6D),
+                                                fontSize: 20.sp,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                  SizedBox(height: 0.1.sh),
-                                  Text(
-                                    'Other',
-                                    style: TextStyle(
-                                        color: Color(0xff706D6D),
-                                        fontSize: 14.sp),
-                                  ),
-                                  Divider(
-                                    color: Color(0xffC88EC5),
-                                    thickness: 0.2.h,
-                                    height: 10.h,
-                                  ),
-                                  GestureDetector(
-                                    onTap: notificationSetting,
-                                    child: ListTile(
-                                      leading: Icon(
-                                        Icons.notifications_active_rounded,
-                                        color: Color(0xffC88EC5),
-                                      ),
-                                      title: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Notification',
-                                            style: TextStyle(
-                                                color: Color(0xffA1A1A1),
-                                                fontSize: 11.sp),
-                                          ),
-                                          CupertinoSwitch(
-                                            value: _notification ?? false,
-                                            onChanged: (bool value) async {
-                                              final SharedPreferences prefs =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              setState(() {
-                                                _notification = value;
-                                                prefs.setBool(
-                                                    'NotificationStatus',
-                                                    value);
-                                              });
-                                              if (_notification) {
-                                                sendNotification(
-                                                    0,
-                                                    _notifyTime1[0],
-                                                    _notifyTime1[1],
-                                                    0);
-                                                sendNotification(
-                                                    1,
-                                                    _notifyTime2[0],
-                                                    _notifyTime2[1],
-                                                    0);
-                                                sendNotification(
-                                                    3,
-                                                    _notifyTime3[0],
-                                                    _notifyTime3[1],
-                                                    0);
-
-                                                // sendNotification();
-                                                print("Turned on notification");
-
-                                                final List<
-                                                        PendingNotificationRequest>
-                                                    pendingNotificationRequests =
-                                                    await flutterLocalNotificationsPlugin
-                                                        .pendingNotificationRequests();
-                                                pendingNotificationRequests
-                                                    .forEach((element) {
-                                                  print(element.id.toString() +
-                                                      ' ' +
-                                                      element.body);
-                                                });
-                                              } else {
-                                                flutterLocalNotificationsPlugin
-                                                    .cancelAll();
-                                                print(
-                                                    "All notifications are canceled");
-                                              }
-                                            },
-                                            activeColor: Color(0xffEA8D8D),
-                                          )
-                                        ],
-                                      ),
-                                      horizontalTitleGap: 0.5.w,
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 0),
-                                    ),
-                                  ),
-                                  Divider(
-                                    color: Color(0xffC88EC5),
-                                    thickness: 0.2.h,
-                                    height: 10.h,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  ListTile(
-                                    onTap: () async {
-                                      final SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
-                                      prefs.setStringList('user', null);
-                                      prefs.setString('token', null);
-                                      try {
-                                        await _auth.signOut();
-                                      } catch (e) {
-                                        print(e);
-                                      }
-                                      Navigator.pushReplacement(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return MyApp();
-                                      }));
-                                    },
+                                        ),
+                                        Text(
+                                          email == null
+                                              ? 'guest@mail.com'
+                                              : email,
+                                          style: TextStyle(
+                                              color: Color(0xffA1A1A1),
+                                              fontSize: 11.sp,
+                                              fontWeight: FontWeight.w100),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                                SizedBox(height: 0.1.sh),
+                                Text(
+                                  'Other',
+                                  style: TextStyle(
+                                      color: Color(0xff706D6D),
+                                      fontSize: 14.sp),
+                                ),
+                                Divider(
+                                  color: Color(0xffC88EC5),
+                                  thickness: 0.2.h,
+                                  height: 10.h,
+                                ),
+                                GestureDetector(
+                                  onTap: notificationSetting,
+                                  child: ListTile(
                                     leading: Icon(
-                                      Icons.logout,
+                                      Icons.notifications_active_rounded,
                                       color: Color(0xffC88EC5),
                                     ),
-                                    title: Text(
-                                      'Log out',
-                                      style: TextStyle(
-                                          color: Color(0xff706D6D),
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.bold),
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Notification',
+                                          style: TextStyle(
+                                              color: Color(0xffA1A1A1),
+                                              fontSize: 11.sp),
+                                        ),
+                                        CupertinoSwitch(
+                                          value: _notification ?? false,
+                                          onChanged: (bool value) async {
+                                            final SharedPreferences prefs =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            setState(() {
+                                              _notification = value;
+                                              prefs.setBool(
+                                                  'NotificationStatus', value);
+                                            });
+                                            if (_notification) {
+                                              sendNotification(
+                                                  0,
+                                                  _notifyTime1[0],
+                                                  _notifyTime1[1],
+                                                  0);
+                                              sendNotification(
+                                                  1,
+                                                  _notifyTime2[0],
+                                                  _notifyTime2[1],
+                                                  0);
+                                              sendNotification(
+                                                  3,
+                                                  _notifyTime3[0],
+                                                  _notifyTime3[1],
+                                                  0);
+
+                                              // sendNotification();
+                                              print("Turned on notification");
+
+                                              final List<
+                                                      PendingNotificationRequest>
+                                                  pendingNotificationRequests =
+                                                  await flutterLocalNotificationsPlugin
+                                                      .pendingNotificationRequests();
+                                              pendingNotificationRequests
+                                                  .forEach((element) {
+                                                print(element.id.toString() +
+                                                    ' ' +
+                                                    element.body);
+                                              });
+                                            } else {
+                                              flutterLocalNotificationsPlugin
+                                                  .cancelAll();
+                                              print(
+                                                  "All notifications are canceled");
+                                            }
+                                          },
+                                          activeColor: Color(0xffEA8D8D),
+                                        )
+                                      ],
                                     ),
                                     horizontalTitleGap: 0.5.w,
                                     contentPadding:
                                         EdgeInsets.symmetric(horizontal: 0),
                                   ),
-                                ],
-                              )
-                            ],
-                          ),
+                                ),
+                                Divider(
+                                  color: Color(0xffC88EC5),
+                                  thickness: 0.2.h,
+                                  height: 10.h,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                ListTile(
+                                  onTap: () async {
+                                    final SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setStringList('user', null);
+                                    prefs.setString('token', null);
+                                    try {
+                                      await _auth.signOut();
+                                    } catch (e) {
+                                      print(e);
+                                    }
+                                    Navigator.pushReplacement(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return MyApp();
+                                    }));
+                                  },
+                                  leading: Icon(
+                                    Icons.logout,
+                                    color: Color(0xffC88EC5),
+                                  ),
+                                  title: Text(
+                                    'Log out',
+                                    style: TextStyle(
+                                        color: Color(0xff706D6D),
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  horizontalTitleGap: 0.5.w,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 0),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
