@@ -6,12 +6,14 @@ Good Wallet is an expense management application.
 * (to build application on ios devices) Xcode on macOS
 
 # Development
-1. Clone
+### 1. Clone
 
 `git clone https://github.com/macropusgiganteus/goodwallet.git`
 
-2. Go to directory /Source code/Application
-3. Build an application
+### 2. Go to directory -> goodwallet/Source code/Application/
+### 3. Build an application
 
+* On simulators - `flutter run` 
 * On android devices - `flutter run` ** make sure that the device is connected to the computer **
+* On ios devices -
 
