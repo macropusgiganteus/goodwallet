@@ -13,7 +13,11 @@ Good Wallet is an expense management application.
 ### 2. Go to directory -> goodwallet/Source code/Application/
 ### 3. Build an application
 
-* On simulators - `flutter run` 
-* On android devices - `flutter run` ** make sure that the device is connected to the computer **
-* On ios devices -
+#### On simulators :
+
+`flutter run` 
+
+#### On android devices :
+
+`flutter run` ** make sure that the device is connected to the computer **
 
