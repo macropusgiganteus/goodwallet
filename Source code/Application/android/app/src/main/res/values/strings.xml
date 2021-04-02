@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Good Wallet </string>
+    <string name="facebook_app_id">407929887171989</string>
+    <string name="fb_login_protocol_scheme">fb407929887171989</string>
+</resources>

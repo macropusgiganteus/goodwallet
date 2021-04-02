@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "475712502419",
+    "firebase_url": "https://goodwallet-469b1-default-rtdb.firebaseio.com",
+    "project_id": "goodwallet-469b1",
+    "storage_bucket": "goodwallet-469b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475712502419:android:f74f7f9a5568ffb6e4eb66",
+        "android_client_info": {
+          "package_name": "com.GoodWallet.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475712502419-nsmm7ijhvkget5vabasgrjtg6cre8rst.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmvsH7brNRdwg42AfCF6jji5Bs40Wcf_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475712502419-nsmm7ijhvkget5vabasgrjtg6cre8rst.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
