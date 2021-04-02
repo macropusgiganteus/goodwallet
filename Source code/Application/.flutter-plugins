@@ -1,0 +1,20 @@
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.16.0+1/
+cloud_firestore_web=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.3.0+2/
+firebase_auth=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.20.1/
+firebase_auth_web=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.3.3/
+firebase_core=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.7.0/
+firebase_core_web=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.2.1+3/
+flutter_facebook_login=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-3.0.0/
+flutter_local_notifications=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-4.0.1+2/
+path_provider=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.27/
+path_provider_linux=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/
+path_provider_macos=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+8/
+path_provider_windows=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.5/
+permission_handler=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler-5.1.0+2/
+shared_preferences=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.12+4/
+shared_preferences_linux=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-0.0.2+4/
+shared_preferences_macos=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+11/
+shared_preferences_web=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+7/
+shared_preferences_windows=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-0.0.2+3/
+speech_to_text=/Users/phanupong/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/speech_to_text-2.7.0/

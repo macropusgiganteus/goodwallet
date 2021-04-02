@@ -44,6 +44,7 @@ class _VoiceInputState extends State<VoiceInput> {
 
   //speech to text variables
   stt.SpeechToText _speech;
+
   bool _isListening = false;
   String _text = 'Press the button and start speaking';
   bool _buttonPressed = false;
@@ -52,6 +53,7 @@ class _VoiceInputState extends State<VoiceInput> {
   void initState() {
     super.initState();
     _speech = stt.SpeechToText();
+
     Future askForPermissions() async {
       if (await Permission.microphone.request().isGranted) {
         // Either the permission was already granted before or the user just granted it.
@@ -78,171 +80,173 @@ class _VoiceInputState extends State<VoiceInput> {
             colors: [Color(0xffAE90F4), Color(0xffDF8D9F)],
           ),
         ),
-        child: SafeArea(
-          child: Align(
-            alignment: Alignment.center,
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Column(
-                  children: [
-                    Header(),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    WalletSlider(firebaseInstance),
-                    AnimatedOpacity(
-                      duration: _opacityDuration,
-                      opacity: _opacity,
-                      child: Container(
-                        height: 0.4.sh,
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: 280.w,
-                              child: Text(
-                                'Example',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 22.sp),
-                              ),
-                            ),
-                            AnimatedPositioned(
-                              duration: _animationDuration,
-                              top: _buttonPressed ? 0 : 18.h,
-                              child: VoiceExample('plus',
-                                  'รายรับ: ได้เงินจากแม่ 200 บาท', 0xff379243),
-                            ),
-                            AnimatedPositioned(
-                              duration: _animationDuration,
-                              top: _buttonPressed ? 0 : 102.h,
-                              child: VoiceExample('minus',
-                                  'รายจ่าย: ซื้อข้าวกะเพรา 45 บาท', 0xffC3374E),
-                            ),
-                            AnimatedPositioned(
-                              duration: _animationDuration,
-                              top: _buttonPressed ? 0 : 184.h,
-                              child: VoiceExample('transferLogo',
-                                  'การโอน: โอนเงิน 80 บาท', 0xffE1B152),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 60.h,
-                      width: _screenWidth,
-                    ),
-                    Container(
-                      child: Text(
-                        'Press and hold the button\nto record your word',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16.sp),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 23.h),
-                      height: 70.h,
-                      width: 70.h,
-                      child: Listener(
-                          onPointerDown: (details) async {
-                            setState(() {
-                              _opacity = 0;
-                              _textOpacity = 1;
-                            });
-                            _text = '';
-                            _buttonPressed = true;
-                            bool available = await _speech.initialize(
-                              onStatus: (val) => print('onStatus: $val'),
-                              onError: (val) => print('onError: $val'),
-                            );
-                            if (available) {
-                              setState(() => _isListening = true);
-                              _speech.listen(
-                                onResult: (val) => setState(() {
-                                  _text = val.recognizedWords;
-                                  setState(() {
-                                    _text = _text;
-                                  });
-                                }),
-                              );
-                            }
-                          }, // recording
-                          onPointerUp: (details) async {
-                            _buttonPressed = false;
-                            await Future.delayed(Duration(milliseconds: 1000));
-                            setState(() => _isListening = false);
-                            _speech.stop();
-                            print('final result = ' + _text);
-                            await Future.delayed(Duration(milliseconds: 1000));
-                            setState(() {
-                              _opacity = 1;
-                              _textOpacity = 0;
-                            });
-                            if (_text != null && _text != '') {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ConfirmationMainPage(
-                                          text: _text,
-                                          index: _walletIndex,
-                                          firebaseInstance: firebaseInstance,
-                                        )),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(noText);
-                            }
-                          }, // stop recording
-                          child: RadialProgress()),
-                    )
-                  ],
-                ),
-                AnimatedOpacity(
-                  duration: _opacityDuration,
-                  opacity: _textOpacity,
-                  child: Container(
-                    constraints: BoxConstraints(maxWidth: 0.8.sw),
-                    margin: EdgeInsets.only(bottom: 150.h),
-                    child: Text(
-                      _text,
-                      style: TextStyle(fontSize: 30.sp, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
+
+        child: Align(
+          alignment: Alignment.center,
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Column(
+                children: [
+                  Header(),
+                  SizedBox(
+                    height: 10.h,
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(PageTransition(
-                          type: PageTransitionType.rippleRightUp,
-                          child: ManualIncome(_walletIndex, firebaseInstance)));
-                    },
+                  WalletSlider(firebaseInstance),
+                  AnimatedOpacity(
+                    duration: _opacityDuration,
+                    opacity: _opacity,
                     child: Container(
-                      height: 0.07.sh,
-                      width: 0.065.sh,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(60.r),
-                          bottomLeft: Radius.circular(8.r),
-                          topRight: Radius.circular(8.r),
-                        ),
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                          vertical: 0.015.sh, horizontal: 0.015.sw),
-                      child: SvgPicture.asset(
-                        'images/edit.svg',
-                        color: Color(0xffCB80AD),
-                        fit: BoxFit.scaleDown,
-                        alignment: Alignment.bottomRight,
+                      height: 0.4.sh,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 280.w,
+                            child: Text(
+                              'Example',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 22.sp),
+                            ),
+                          ),
+                          AnimatedPositioned(
+                            duration: _animationDuration,
+                            top: _buttonPressed ? 0 : 18.h,
+                            child: VoiceExample('plus',
+                                'รายรับ: ได้เงินจากแม่ 200 บาท', 0xff379243),
+                          ),
+                          AnimatedPositioned(
+                            duration: _animationDuration,
+                            top: _buttonPressed ? 0 : 102.h,
+                            child: VoiceExample('minus',
+                                'รายจ่าย: ซื้อข้าวกะเพรา 45 บาท', 0xffC3374E),
+                          ),
+                          AnimatedPositioned(
+                            duration: _animationDuration,
+                            top: _buttonPressed ? 0 : 184.h,
+                            child: VoiceExample('transferLogo',
+                                'การโอน: โอนเงิน 80 บาท', 0xffE1B152),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+                  SizedBox(
+                    height: 60.h,
+                    width: _screenWidth,
+                  ),
+                  Container(
+                    child: Text(
+                      'Press and hold the button\nto record your word',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 23.h),
+                    height: 70.h,
+                    width: 70.h,
+                    child: Listener(
+                        onPointerDown: (details) async {
+                          setState(() {
+                            _opacity = 0;
+                            _textOpacity = 1;
+                          });
+                          _text = '';
+                          _buttonPressed = true;
+                          bool available = await _speech.initialize(
+                            onStatus: (val) => print('onStatus: $val'),
+                            onError: (val) => print('onError: $val'),
+                          );
+                          if (available) {
+                            var locales = await _speech.locales();
+                            var selectedLocale = locales[60];
+
+                            setState(() => _isListening = true);
+                            _speech.listen(
+                              localeId: selectedLocale.localeId,
+                              onResult: (val) => setState(() {
+                                _text = val.recognizedWords;
+                                setState(() {
+                                  _text = _text;
+                                });
+                              }),
+                            );
+                          }
+                        }, // recording
+                        onPointerUp: (details) async {
+                          _buttonPressed = false;
+                          await Future.delayed(Duration(milliseconds: 1000));
+                          setState(() => _isListening = false);
+                          _speech.stop();
+                          print('final result = ' + _text);
+                          await Future.delayed(Duration(milliseconds: 1000));
+                          setState(() {
+                            _opacity = 1;
+                            _textOpacity = 0;
+                          });
+                          if (_text != null && _text != '') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConfirmationMainPage(
+                                        text: _text,
+                                        index: _walletIndex,
+                                        firebaseInstance: firebaseInstance,
+                                      )),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(noText);
+                          }
+                        }, // stop recording
+                        child: RadialProgress()),
+                  )
+                ],
+              ),
+              AnimatedOpacity(
+                duration: _opacityDuration,
+                opacity: _textOpacity,
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 0.8.sw),
+                  margin: EdgeInsets.only(bottom: 150.h),
+                  child: Text(
+                    _text,
+                    style: TextStyle(fontSize: 30.sp, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(PageTransition(
+                        type: PageTransitionType.rippleRightUp,
+                        child: ManualIncome(_walletIndex, firebaseInstance)));
+                  },
+                  child: Container(
+                    height: 0.07.sh,
+                    width: 0.065.sh,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(60.r),
+                        bottomLeft: Radius.circular(8.r),
+                        topRight: Radius.circular(8.r),
+                      ),
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 0.015.sh, horizontal: 0.015.sw),
+                    child: SvgPicture.asset(
+                      'images/edit.svg',
+                      color: Color(0xffCB80AD),
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.bottomRight,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),

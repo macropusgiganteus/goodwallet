@@ -88,56 +88,64 @@ class _GraphState extends State<Graph> {
             borderRadius: BorderRadius.circular(32.r),
             color: Colors.white,
           ),
-          child: Stack(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 65.h),
-                child: GraphComponent(firebaseInstance, this),
-              ),
-            ],
+          child: OverflowBox(
+            alignment: Alignment.topCenter,
+            maxHeight: _screenHeight,
+            minHeight: 0,
+            maxWidth: _screenWidth,
+            minWidth: 0,
+            child: Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 80.h),
+                  child: GraphComponent(firebaseInstance, this),
+                ),
+                SnakeNavigationBar.color(
+                  height: 30.h,
+                  behaviour: SnakeBarBehaviour.floating,
+                  padding: EdgeInsets.symmetric(horizontal: 50.w),
+                  snakeViewColor: Color(0xff8C35B1),
+                  snakeShape: SnakeShape.rectangle,
+                  currentIndex: _selectedItemPosition,
+                  onTap: (index) => setState(() {
+                    _selectedItemPosition = index;
+                  }),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.r)),
+                  items: [
+                    BottomNavigationBarItem(
+                        icon: Text(
+                      "Day",
+                      style: TextStyle(
+                        color: _selectedItemPosition == 0
+                            ? Colors.white
+                            : Color(0xff8C35B1),
+                        fontSize: 16.sp,
+                      ),
+                    )),
+                    BottomNavigationBarItem(
+                      icon: Text("Month",
+                          style: TextStyle(
+                            color: _selectedItemPosition == 1
+                                ? Colors.white
+                                : Color(0xff8C35B1),
+                            fontSize: 16.sp,
+                          )),
+                    ),
+                    BottomNavigationBarItem(
+                        icon: Text("Year",
+                            style: TextStyle(
+                              color: _selectedItemPosition == 2
+                                  ? Colors.white
+                                  : Color(0xff8C35B1),
+                              fontSize: 16.sp,
+                            ))),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      SnakeNavigationBar.color(
-        height: 30.h,
-        behaviour: SnakeBarBehaviour.floating,
-        padding: EdgeInsets.fromLTRB(50.w, 20.h, 50.w, 20.h),
-        snakeViewColor: Color(0xff8C35B1),
-        snakeShape: SnakeShape.rectangle,
-        currentIndex: _selectedItemPosition,
-        onTap: (index) => setState(() {
-          _selectedItemPosition = index;
-        }),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-        items: [
-          BottomNavigationBarItem(
-              icon: Text(
-            "Day",
-            style: TextStyle(
-              color:
-                  _selectedItemPosition == 0 ? Colors.white : Color(0xff8C35B1),
-              fontSize: 16.sp,
-            ),
-          )),
-          BottomNavigationBarItem(
-            icon: Text("Month",
-                style: TextStyle(
-                  color: _selectedItemPosition == 1
-                      ? Colors.white
-                      : Color(0xff8C35B1),
-                  fontSize: 16.sp,
-                )),
-          ),
-          BottomNavigationBarItem(
-              icon: Text("Year",
-                  style: TextStyle(
-                    color: _selectedItemPosition == 2
-                        ? Colors.white
-                        : Color(0xff8C35B1),
-                    fontSize: 16.sp,
-                  ))),
-        ],
       ),
     ]);
   }
