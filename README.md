@@ -19,5 +19,9 @@ Good Wallet is an expense management application.
 
 #### On android devices :
 
-`flutter run` ** make sure that the device is connected to the computer **
+`flutter run -d "device name or id"` 
+
+** make sure that the device is connected to the computer **
+
+** to specify a device name or id - `flutter devices` **
 
