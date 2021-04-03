@@ -26,5 +26,5 @@ Good Wallet is an expense management application.
 ** to specify a device name or id - `flutter devices` **
 
 #### - On ios devices :
-you can follow this tutorial : [How to test your Flutter iOS app on your iOS device](https://medium.com/front-end-weekly/how-to-test-your-flutter-ios-app-on-your-ios-device-75924bfd75a8)
+switch to branch **ios_version** then you can follow this tutorial : [How to test your Flutter iOS app on your iOS device](https://medium.com/front-end-weekly/how-to-test-your-flutter-ios-app-on-your-ios-device-75924bfd75a8)
 
